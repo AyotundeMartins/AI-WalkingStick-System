@@ -1,84 +1,121 @@
 
-# AI-WalkingStick-System
+# 👨‍🦯 AI-WalkingStick-System
 
-A smart, AI-powered walking stick designed for visually impaired users. It provides real-time obstacle detection, environmental alerts, GPS tracking, and voice-guided feedback through an embedded system of sensors and modules.
-
----
-
-## 🚀 Features
-
-- Obstacle detection using Ultrasonic, IR, and Rain sensors
-- AI-based obstacle classification and environmental prediction
-- Voice alerts using DFPlayer Mini and speaker module
-- GPS tracking with NEO-6M module
-- Emergency alert via SIM800L
-- Vibration feedback and LCD display integration
+A smart, AI-powered walking stick designed for visually impaired users. It provides **real-time obstacle detection**, **environmental alerts**, **GPS tracking**, and **voice-guided feedback** through an embedded system of sensors and modules.
 
 ---
 
-## 📦 Hardware Components
-
-- Arduino Mega 2560
-- Ultrasonic Sensor (HC-SR04)
-- IR Sensor
-- DHT11 (Temperature & Humidity)
-- Rain Sensor (MH series)
-- DFPlayer Mini with MicroSD
-- NEO-6M GPS Module
-- SIM800L GSM Module
-- LCD Display (parallel)
-- Buzzer, Vibration Motor, Panic Button
-- Rechargeable Battery + Charging Circuit
+## ✨ Features
+- Obstacle detection using **Ultrasonic, IR, and Rain sensors**
+- AI-based **obstacle classification** and **environmental prediction**
+- Voice alerts using **DFPlayer Mini + speaker module**
+- GPS tracking with **NEO-6M module**
+- Emergency alert via **SIM800L**
+- Vibration feedback and **LCD display integration**
 
 ---
 
-## 🧠 AI/ML Integration
+## 📐 Schematic Diagrams
+Circuit and PCB designs are available in the [`docs/Schematic`](./docs/Schematic) folder.
 
-- Obstacle classification using IR, Ultrasonic & Rain sensors
-- Environmental prediction using temperature, humidity & rainfall (lightweight ML logic)
-- Real-time decision-making embedded in Arduino code
-
----
-
-## 🔧 How to Use
-
-1. Clone this repository
-2. Open the `.ino` files in Arduino IDE
-3. Connect hardware as per provided schematic
-4. Upload code to Arduino Mega
-5. Power the system and observe feedback through voice, vibration, and display
+Example schematic:  
+![Walking Stick Schematic](./docs/Schematic/Schematic_AI-WAKING-STICK.png)
 
 ---
 
-## 🗂️ Folder Structure
+## 🧠 AI Models
+The **AI models** are located in the [`ai/`](./ai/) folder.
+
+- `dataset_generator.py` → Generates synthetic environmental dataset (temperature, humidity, rainfall).  
+- `forecast_model.py` → Uses **Facebook Prophet** to train and predict environmental conditions.  
+- `requirements.txt` → Python dependencies.
+
+### Example Training (Prophet)
+```bash
+pip install -r ai/requirements.txt
+python ai/dataset_generator.py
+python ai/forecast_model.py
+````
+
+**Output Files**
+
+* `environmental_sensor_dataset.csv` → Generated dataset
+* `environmenetal_forecast.csv` → Predicted environmental conditions
+
+---
+
+## 📂 Repository Structure
 
 ```
 AI-WalkingStick-System/
+│── ai/                # Python AI models (dataset + prediction)
+│   ├── dataset_generator.py
+│   ├── forecast_model.py
+│   └── requirements.txt
 │
-├── core/               # Pin setup and system boot
-├── sensors/            # Sensor reading modules
-├── ai/                 # AI logic for classification/prediction
-├── alerts/             # Voice and vibration feedback
-├── gps/                # GPS tracking logic
-├── emergency/          # Panic button and GSM alerts
-├── utils/              # Helper functions
-└── main.ino            # Central project code
+│── docs/Schematic/    # Circuit schematics and PCB layouts
+│   ├── PCB_PCB_AI-POWER-WAKING-STICK.brd
+│   ├── PCB_PCB_AI-WAKING-STICK.sch
+│   ├── Schematic_AI-POWER-WAKING-STICK.png
+│   └── Schematic_AI-WAKING-STICK.png
+│
+│── main.ino           # Arduino main control logic
+│── README.md          # Documentation
 ```
 
 ---
 
-## 📸 Demo
+Hardware Components
 
-*Coming soon – images and videos of the system in action*
+* Arduino Mega 2560
+* Ultrasonic Sensor (**HC-SR04**)
+* IR Sensor
+* DHT11 (**Temperature & Humidity**)
+* MH Series Rain Sensor
+* DFPlayer Mini + Speaker
+* NEO-6M GPS
+* SIM800L GSM Module
+* Panic Button + Vibration Motor
+* LCD Display (parallel interface)
 
 ---
 
-## 🙏 Acknowledgements
+Voice Alerts
 
-Special thanks to my project supervisor, teammates, and all contributors who made this project possible.
+The DFPlayer Mini SD card contains:
+
+* `0001-High temperature detected`
+* `0002-Rainfall likely`
+* `0003-Large object detected`
+* `0004-Small object detected`
+* `0005-Ground is slippery`
 
 ---
 
-## 📄 License
+How to Run
 
-This project is licensed under the MIT License.
+Arduino
+
+1. Open `main.ino` in Arduino IDE.
+2. Select **Arduino Mega 2560** board.
+3. Upload the code to your device.
+
+Python AI
+
+
+cd ai
+pip install -r requirements.txt
+python dataset_generator.py
+python forecast_model.py
+
+
+---
+
+## 👤 Author
+
+Ogunkunle Ayotunde Martins
+University of Ilorin, Department of Computer Engineering
+
+---
+
+
